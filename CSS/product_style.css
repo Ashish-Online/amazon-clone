@@ -10,7 +10,6 @@ button, select, .pointer{
 .product-container{
   display: grid;
   height: auto;
-  /* grid-template-rows:      25px 50px 30px 30px 30px 30px; */
   padding: 45px 25px 25px;
   color: black;
   font-family: 16px Roboto, arial;
@@ -24,11 +23,13 @@ button, select, .pointer{
   padding: 0px 10px 20px 10px;
 }
 .product-image{
-  width: 80%;
+  max-width: 100%;
+  max-height: 100%;
 }
 .product-title{
   height: 40px;
   font-size: 16px;
+  overflow: hidden;
 }
 .rating{
   height: 30px;
