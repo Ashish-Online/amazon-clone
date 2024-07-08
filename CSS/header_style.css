@@ -1,11 +1,11 @@
-body{
+body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
 
-.amazon-header{
+.amazon-header {
   display: flex;
   position: fixed;
   height: 60px;
@@ -14,21 +14,24 @@ body{
   justify-content: space-between;
   align-items: center;
 }
-.left-section{
+
+.left-section {
   width: 150px;
-  
 }
-.left-section img{
+.left-section img {
   height: 30px;
   margin-left: 20px;
 }
-.middle-section{
+
+
+.middle-section {
   display: flex;
   width: 850px;
   min-width: 300px;
   align-items: center;
 }
-.middle-section input{
+
+.middle-section input {
   flex: 1;
   width: 0;
   height: 35px;
@@ -37,49 +40,74 @@ body{
   border-radius: 5px 0px 0px 5px;
   padding-left: 15px;
 }
-.search-btn{
+
+.search-btn {
   background-color: rgb(233, 184, 91);
   height: 38px;
   width: 42px;
   border: none;
   border-radius: 0px 5px 5px 0px;
 }
-.search-btn img{
+
+.search-btn img {
   height: 20px;
 }
-.right-section{
-  width: 210px;
+
+.right-section {
+  width: 200px;
   display: grid;
-  grid-template-columns: 65px 100px;
+  grid-template-columns: 80px 100px;
   align-items: center;
-  /* border: 1px solid yellow; */
-  color: white;
-  padding: 10px;
-}
-.right-section a{
   color: white;
 }
-.cart-quality{
-  color: rgb(240, 136, 4);
-    font-size: 16px;
-    font-weight: 700;
-    position: absolute;
-    top: 4px;
-    left: 22px;
-    width: 26px;
-    text-align: center;
-  color: white;
-  position: relative;
-  margin-top: -100px;
+.order-link{
+  display: flex;
+  flex-direction: column;
+  padding: 5px 5px;
 }
-.cart-icon{
+.returns-text{
+  font-size: 13px;
+  width: 45px;
+}
+.orders-text{
+  width: 80px;
+  font-weight: 600;
+}
+.right-section a {
+  color: white;
+}
+.cart-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+}
+.cart-icon {
   width: 50px;
 }
-.cart-link{
-  display: flex;
-    align-items: center;
-    position: relative;
-}
-.cart-link img{
+.cart-link img {
   height: 35px;
+}
+.cart-quality {
+  color: rgb(240, 136, 4);
+  font-size: 16px;
+  font-weight: 700;
+  width: 26px;
+  text-align: center;
+  position: relative;
+  top: -9px;
+  left: -25px;
+  width: 0px;
+}
+.cart-text {
+  position: relative;
+  top: 5px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
+.order-link:hover, .cart-link:hover{
+  border: 1px solid white;
+  cursor: pointer;
 }
