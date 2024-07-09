@@ -72,17 +72,25 @@ button, select, .pointer{
   padding: 8px 8px;
 }
 .added-to-cart-message{
+  display: flex;
+  align-items: center;
+  color: rgb(0, 95, 0);
   margin-top: 10px;
   height: 30px;
+  margin-bottom: 10px;
+  column-gap: 5px;
 }
-.added-to-cart-btn{
+.added-to-cart-message img{
+  height: 20px;
+}
+.add-to-cart-btn{
   background-color: rgb(255, 225, 0);
   width: 100%;
   border-radius: 25px;
   border: none;
   padding: 10px;
 }
-.added-to-cart-btn:hover{
+.add-to-cart-btn:hover{
   box-shadow: rgba(74, 58, 255, 0.15) 0px 4px 10px 0px;
   transform: translate(0px, -2px);
 }
