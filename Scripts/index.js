@@ -1,4 +1,6 @@
 const gridContainer = document.querySelector('.js-grid-container');
+const searchBar = document.querySelector('.search-bar');
+const searchBtn = document.querySelector('.search-btn');
 
 let productsHTML = '';
 
@@ -74,3 +76,20 @@ addToCartBtns.forEach((button) => {
     addToCart(button);
   });
 });
+
+function searchFilter(){
+  const inputValue = searchBar.value.toLowerCase();
+  const products = document.querySelectorAll('.product-container');
+
+  products.forEach((product)=>{
+    if(product.children[1].innerText.toLowerCase().includes(`${inputValue}`)){
+      product.style.display = 'block';
+    }
+    else{
+      product.style.display = 'none';
+    }
+  });
+  
+}
+
+searchBtn.addEventListener('click', searchFilter);
