@@ -6,18 +6,24 @@ body {
 }
 
 .amazon-header {
+  background-color: rgb(19, 25, 33);
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
   display: flex;
-  position: fixed;
-  height: 60px;
-  width: 100%;
-  background-color: rgb(14, 19, 25);
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
 }
 
 .left-section {
   width: 150px;
 }
+
 .left-section img {
   height: 30px;
   margin-left: 20px;
@@ -28,7 +34,6 @@ body {
   display: flex;
   width: 850px;
   min-width: 300px;
-  align-items: center;
 }
 
 .middle-section input {
@@ -54,60 +59,65 @@ body {
 }
 
 .right-section {
-  width: 200px;
-  display: grid;
-  grid-template-columns: 80px 100px;
-  align-items: center;
-  color: white;
-}
-.order-link{
   display: flex;
-  flex-direction: column;
-  padding: 5px 5px;
+  justify-content: end;
+  width: 180px;
+  color: white;
+  flex-shrink: 0;
 }
-.returns-text{
-  font-size: 13px;
-  width: 45px;
+
+.right-section .header-link {
+  padding: 6px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0); */
 }
-.orders-text{
-  width: 80px;
-  font-weight: 600;
-}
-.right-section a {
+
+.order-link {
   color: white;
 }
+
+.returns-text {
+  display: block;
+  font-size: 12px;
+}
+
+.orders-text {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+
 .cart-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 10px;
+  color: white;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
-.cart-icon {
+
+.cart-link img {
   width: 50px;
 }
-.cart-link img {
-  height: 35px;
-}
+
 .cart-quality {
   color: rgb(240, 136, 4);
   font-size: 16px;
   font-weight: 700;
+  position: absolute;
+  top: 4px;
+  left: 22px;
   width: 26px;
   text-align: center;
-  position: relative;
-  top: -9px;
-  left: -30px;
-  width: 0px;
 }
+
 .cart-text {
-  position: relative;
-  top: 5px;
-  font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
-
-.order-link:hover, .cart-link:hover{
+.order-link:hover,
+.cart-link:hover {
   border: 1px solid white;
   cursor: pointer;
 }

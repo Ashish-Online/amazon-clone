@@ -1,6 +1,7 @@
 import { cart } from '../Scripts/cart.js';
 import { products } from '../Scripts/products.js';
 
+
 const gridContainer = document.querySelector('.js-grid-container');
 const searchBar = document.querySelector('.search-bar');
 const searchBtn = document.querySelector('.search-btn');
@@ -94,6 +95,4 @@ function searchFilter(){
   });
   
 }
-
-searchBar.addEventListener('input', searchFilter);
 searchBtn.addEventListener('click', searchFilter);
