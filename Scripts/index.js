@@ -1,4 +1,4 @@
-import { cart } from '../Scripts/cart.js';
+import { cart, addToCart } from '../Scripts/cart.js';
 import { products } from '../Scripts/products.js';
 
 
@@ -40,33 +40,25 @@ const cartQuality = document.querySelector('.js-cart-quality');
 const addToCartBtns = document.querySelectorAll('.js-add-to-cart-btn');
 let totalCartQuality = 0;
 
-function addToCart(button) {
-  const {productId} = button.dataset;
-  const selectQuantity = button.dataset.quantityNumber;
-  const quantitySelector = document.querySelector(`.${selectQuantity}`);  
-  const quantity = Number(quantitySelector.value);
-  let matchingItem;
+
+function updateCartQuantity(){
   totalCartQuality = 0;
 
-  cart.forEach((item) => {
-    if (productId === item.id) {
-      matchingItem = item;
-    }
-  });
-
-  if (matchingItem) {
-    matchingItem.quantity += quantity;
-  } else {
-    cart.push({
-      productId,
-      quantity
-    });
-  }
-
-  cart.forEach((item) => {
-    totalCartQuality += item.quantity;
+  cart.forEach((cartItem) => {
+    totalCartQuality += cartItem.quantity;
   });
   cartQuality.innerHTML = `${totalCartQuality}`;
+}
+
+function onAddToCart(button) {
+  const { productId } = button.dataset;
+  const selectQuantity = button.dataset.quantityNumber;
+  const quantitySelector = document.querySelector(`.${selectQuantity}`);
+  const quantity = Number(quantitySelector.value);
+
+  addToCart(productId, quantity);
+
+  updateCartQuantity();
 }
 
 
@@ -77,22 +69,22 @@ addToCartBtns.forEach((button) => {
       button.previousElementSibling.innerHTML = ``;
     }, 2000);
 
-    addToCart(button);
+    onAddToCart(button);
   });
 });
 
-function searchFilter(){
+function searchFilter() {
   const inputValue = searchBar.value.toLowerCase();
   const products = document.querySelectorAll('.product-container');
 
-  products.forEach((product)=>{
-    if(product.children[1].innerText.toLowerCase().includes(`${inputValue}`)){
+  products.forEach((product) => {
+    if (product.children[1].innerText.toLowerCase().includes(`${inputValue}`)) {
       product.style.display = 'block';
     }
-    else{
+    else {
       product.style.display = 'none';
     }
   });
-  
+
 }
 searchBtn.addEventListener('click', searchFilter);
