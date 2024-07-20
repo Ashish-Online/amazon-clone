@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Roboto, Arial;
+  font-family: Arial;
 }
 .cart-item-container, .payment-summary{
     border: 1px solid rgb(211, 211, 211);
@@ -62,7 +62,6 @@ main{
 .order-summary{
   flex: 1;
   height: 230px;
-  padding: 20px;
 }
 
 .cart-item-container{

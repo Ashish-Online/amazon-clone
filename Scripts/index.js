@@ -1,10 +1,12 @@
-import { cart, addToCart } from '../Scripts/cart.js';
-import { products } from '../Scripts/products.js';
-
+import { cart, addToCart } from '../Data/cart.js';
+import { products } from '../Data/products.js';
+import { formatCurrency } from './utils/money.js';
 
 const gridContainer = document.querySelector('.js-grid-container');
 const searchBar = document.querySelector('.search-bar');
 const searchBtn = document.querySelector('.search-btn');
+const cartQuality = document.querySelector('.js-cart-quality');
+
 
 let productsHTML = '';
 
@@ -15,7 +17,7 @@ products.forEach((product) => {
         <div class="product-title">${product.name}</div>
         <div class="rating"><span class="rating-star"><img src="Images/ratings/rating-${product.rating.stars * 10}.png" alt=""></span>
         <span class="rating-number pointer">${product.rating.count}</span></div>
-        <div class="product-price">$${(product.priceCents / 100).toFixed(2)}</div>
+        <div class="product-price">$${formatCurrency(product.priceCents)}</div>
         <select name="cars" id="quantity-number" class="js-quantity-selector-${product.id}">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -36,10 +38,10 @@ products.forEach((product) => {
 });
 gridContainer.innerHTML = productsHTML;
 
-const cartQuality = document.querySelector('.js-cart-quality');
-const addToCartBtns = document.querySelectorAll('.js-add-to-cart-btn');
-let totalCartQuality = 0;
 
+const addToCartBtns = document.querySelectorAll('.js-add-to-cart-btn');
+
+let totalCartQuality = 0;
 
 function updateCartQuantity(){
   totalCartQuality = 0;
@@ -85,6 +87,8 @@ function searchFilter() {
       product.style.display = 'none';
     }
   });
-
 }
+
+cartQuality.innerHTML = `${totalCartQuality}`;
+
 searchBtn.addEventListener('click', searchFilter);
