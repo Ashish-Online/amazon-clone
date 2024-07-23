@@ -7,7 +7,6 @@ const searchBar = document.querySelector('.search-bar');
 const searchBtn = document.querySelector('.search-btn');
 const cartQuality = document.querySelector('.js-cart-quality');
 
-
 let productsHTML = '';
 
 products.forEach((product) => {
@@ -34,23 +33,14 @@ products.forEach((product) => {
         <button type="button" data-product-id="${product.id}" data-quantity-number="js-quantity-selector-${product.id}" class="add-to-cart-btn js-add-to-cart-btn">Add to Cart</button>
       </div>
   `;
-
 });
+
 gridContainer.innerHTML = productsHTML;
+console.log(gridContainer.innerHTML);
 
 
 const addToCartBtns = document.querySelectorAll('.js-add-to-cart-btn');
 
-let totalCartQuality = 0;
-
-function updateCartQuantity(){
-  totalCartQuality = 0;
-
-  cart.forEach((cartItem) => {
-    totalCartQuality += cartItem.quantity;
-  });
-  cartQuality.innerHTML = `${totalCartQuality}`;
-}
 
 function onAddToCart(button) {
   const { productId } = button.dataset;
@@ -89,6 +79,17 @@ function searchFilter() {
   });
 }
 
-cartQuality.innerHTML = `${totalCartQuality}`;
+let totalCartQuality = 0;
+
+function updateCartQuantity(){
+  totalCartQuality = 0;
+
+  cart.forEach((cartItem) => {
+    totalCartQuality += cartItem.quantity;
+  });
+  cartQuality.innerText = `${totalCartQuality}`;
+}
+
+updateCartQuantity();
 
 searchBtn.addEventListener('click', searchFilter);

@@ -1,10 +1,11 @@
-import { cart, removeItemFromCart } from '../Data/cart.js';
+import { cart, removeItemFromCart, setItemStorage } from '../Data/cart.js';
 import { products } from '../Data/products.js';
 import { formatCurrency } from './utils/money.js';
 
 const orderSummary = document.querySelector('.order-summary');
 const paymentSummary = document.querySelector('.payment-summary');
 
+let totalCartQuantity;
 orderSummary.innerHTML = '';
 
 let shippingCost = 0.00;
@@ -23,7 +24,7 @@ cart.forEach((cartItem) => {
     }
   });
   orderSummary.innerHTML +=
-  `
+    `
     <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
       <div class="delivery-date">Delivery date: Tuesday, June 21</div>
       <div class="cart-item-detail-grid">
@@ -32,9 +33,9 @@ cart.forEach((cartItem) => {
             <div class="product-name">${matchingProduct.name}
             </div>
             <div class="product-price">$${formatCurrency(matchingProduct.priceCents)}</div>
-            <div class="product-quantity">Quantity: <span class="quantity-number"><input type='number' value=2 con></span>
-              <a href="#" class="js-update-product-link">Update</a>
-              <a href="#" class="js-delete-product-link">Delete</a>
+            <div class="product-quantity">Quantity: <span class="quantity-number">${cartItem.quantity}</span>
+              <span class="js-update-product-link link-primary">Update</span>
+              <span class="js-delete-product-link link-primary">Delete</span>
             </div>
           </div>
           <div class="delivery-options">
@@ -70,7 +71,7 @@ paymentSummary.innerHTML = `
   <div class="js-payment-info">
           <div class="payment-summary-title">Order Summary:</div>
           <div class="payment-summary-row">
-            <div class="payment-summary-item-number">Items (<span class="item-number">${cart.length}:</span>)</div>
+            <div class="payment-summary-item-number">Items (<span class="item-number js-cart-quantity">${totalCartQuantity}:</span>)</div>
             <div class="payment-summary-money">$${costBeforeTax / 100}</div>
           </div>
           <div class="payment-summary-row">
@@ -101,13 +102,76 @@ paymentSummary.innerHTML = `
         </div>
       </div>
 `;
+const cartQuantitys = document.querySelectorAll('.js-cart-quantity');
 
 const itemContainers = document.querySelectorAll('.cart-item-container');
 
-orderSummary.addEventListener('click', (e)=>{
-  if(e.target.classList.contains('js-delete-product-link')){
+orderSummary.addEventListener('click', (e) => {
+  if (e.target.classList.contains('js-delete-product-link')) {
     const productid = e.target.parentElement.parentElement.parentElement.parentElement.classList[1].slice(23);
     e.target.parentElement.parentElement.parentElement.parentElement.remove();
     removeItemFromCart(productid);
   }
+  updateCartQuantity();
 });
+
+
+
+orderSummary.addEventListener('click', (e) => {
+  if (e.target.classList.contains('js-update-product-link')) {
+    const productid = e.target.parentElement.parentElement.parentElement.parentElement.classList[1].slice(23);
+    const spanUpdateQuantity = e.target.previousElementSibling;
+
+    let quantityNum;
+    cart.forEach((cartItem) => {
+      if (cartItem.productId === productid) {
+        quantityNum = cartItem.quantity;
+      }
+    });
+
+    if (e.target.innerText === 'Update') {
+      spanUpdateQuantity.innerText = '';
+      e.target.innerText = 'Save';
+      console.log(e.target.innerText);
+      const inputNode = document.createElement('input');
+      inputNode.className = 'span-update-quantity';
+      inputNode.value = quantityNum;
+      spanUpdateQuantity.appendChild(inputNode);
+    }
+    else if (e.target.innerText === 'Save') {
+      e.target.innerText = 'Update';
+      spanUpdateQuantity.innerText = `${spanUpdateQuantity.children[0].value}`;
+    }
+
+    cart.forEach((cartItem) => {
+      if (productid === cartItem.productId) {
+        cartItem.quantity = Number(spanUpdateQuantity.innerText);
+        console.log('cartItem.quantity: ', cartItem.quantity);
+        
+      }
+    });
+    updateCartQuantity();
+  }
+});
+
+function updateCartQuantity() {
+  totalCartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    console.log(cartItem.quantity);
+
+    totalCartQuantity += cartItem.quantity;
+    console.log(totalCartQuantity);
+  });
+
+  if (cartQuantitys) {
+    cartQuantitys.forEach((cartQuantity)=>{
+      cartQuantity.innerText = totalCartQuantity;
+    });
+    } else {
+    console.error('Element with class "js-cart-quantity" not found.');
+  }
+  setItemStorage(cart);
+}
+
+updateCartQuantity();

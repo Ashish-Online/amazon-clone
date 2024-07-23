@@ -91,6 +91,10 @@ main{
   color: rgb(173, 0, 0);
   margin-bottom: 5px;
 }
+.sapn-update-quantity{
+  width: 20px;
+}
+
 
 .choose-delivery-option{
   font-weight: 600;
@@ -148,4 +152,11 @@ main{
 .paypal-toggle{
   padding: 10px 0px;
   margin-bottom: 10px;
+}
+.link-primary{
+  color: rgb(0, 140, 255);
+}
+.link-primary:hover{
+  cursor: pointer;
+  color: red;
 }
