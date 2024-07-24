@@ -36,11 +36,8 @@ products.forEach((product) => {
 });
 
 gridContainer.innerHTML = productsHTML;
-console.log(gridContainer.innerHTML);
-
 
 const addToCartBtns = document.querySelectorAll('.js-add-to-cart-btn');
-
 
 function onAddToCart(button) {
   const { productId } = button.dataset;
