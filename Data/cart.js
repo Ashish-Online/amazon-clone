@@ -14,6 +14,22 @@ if (!cart) {
   ];
 }
 
+
+export function updateCartQuantity(text) {
+  let totalCartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    totalCartQuantity += cartItem.quantity;
+  });
+
+  setItemStorage(cart);
+  
+  console.log(totalCartQuantity, text);
+  return totalCartQuantity
+}
+
+
+
 export function setItemStorage(cart) {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
